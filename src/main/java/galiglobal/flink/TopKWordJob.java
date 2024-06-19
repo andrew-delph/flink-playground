@@ -35,7 +35,7 @@ public class TopKWordJob {
         DataStream<Tuple2<String, Integer>> wordCounts = randomWords
                 .flatMap(new WordTokenizer())
                 .keyBy(value -> value.f0)
-                .window(TumblingEventTimeWindows.of(Time.seconds(1)))
+                .window(TumblingEventTimeWindows.of(Time.seconds(10)))
                 .sum(1);
 
         // Use a custom sink function to print the results
@@ -43,7 +43,7 @@ public class TopKWordJob {
 
         // Find the top 3 words every minute
         DataStream<String> topWords = wordCounts
-                .windowAll(TumblingEventTimeWindows.of(Time.minutes(1)))
+                .windowAll(TumblingEventTimeWindows.of(Time.seconds(1)))
                 .apply(new AllWindowFunction<Tuple2<String, Integer>, String, TimeWindow>() {
                     @Override
                     public void apply(TimeWindow window, Iterable<Tuple2<String, Integer>> values, Collector<String> out) {

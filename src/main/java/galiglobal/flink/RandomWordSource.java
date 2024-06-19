@@ -6,7 +6,7 @@ import java.util.Random;
 
 public  class RandomWordSource extends RichSourceFunction<String> {
     private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
-    private static final int WORD_LENGTH = 3;
+    private static final int WORD_LENGTH = 6;
     private final Random random = new Random();
     private volatile boolean isRunning = true;
 
