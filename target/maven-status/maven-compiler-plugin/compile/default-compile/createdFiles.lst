@@ -1,0 +1,8 @@
+galiglobal/flink/BatchJob.class
+galiglobal/flink/RandomWordCount$Tokenizer.class
+galiglobal/flink/RandomWordCount.class
+galiglobal/flink/RandomWordCount$RandomWordSource.class
+galiglobal/flink/StreamingJob.class
+galiglobal/flink/RandomWordCount$PrintSinkFunction.class
+galiglobal/flink/LongCounterSource.class
+galiglobal/flink/StreamingJob$IncrementMapFunction.class

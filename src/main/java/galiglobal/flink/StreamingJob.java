@@ -47,12 +47,12 @@ public class StreamingJob {
 		LongStream
 				.map(new IncrementMapFunction())
 				.addSink(sink);
-
+		System.out.println("hi");
 		env.execute();
 	}
 
 	public static void main(String[] args) throws Exception {
-		StreamingJob job = new StreamingJob(new RandomLongSource(), new PrintSinkFunction<>());
+		StreamingJob job = new StreamingJob(new LongCounterSource(), new PrintSinkFunction<>());
 		job.execute();
 	}
 
