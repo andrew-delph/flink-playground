@@ -36,30 +36,7 @@ public class RandomWordCount {
     }
 
     // Source function to generate random words
-    public static class RandomWordSource extends RichSourceFunction<String> {
-        private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
-        private static final int WORD_LENGTH = 3;
-        private final Random random = new Random();
-        private volatile boolean isRunning = true;
 
-        @Override
-        public void run(SourceContext<String> ctx) throws Exception {
-            while (isRunning) {
-                StringBuilder word = new StringBuilder(WORD_LENGTH);
-                for (int i = 0; i < WORD_LENGTH; i++) {
-                    int randomIndex = random.nextInt(ALPHABET.length());
-                    word.append(ALPHABET.charAt(randomIndex));
-                }
-                ctx.collect(word.toString());
-//                Thread.sleep(100); // Sleep for a short time to simulate data generation
-            }
-        }
-
-        @Override
-        public void cancel() {
-            isRunning = false;
-        }
-    }
 
     // User-defined function to split lines into words
     public static final class Tokenizer implements FlatMapFunction<String, Tuple2<String, Integer>> {
