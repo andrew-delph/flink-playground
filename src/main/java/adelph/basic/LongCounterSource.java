@@ -1,4 +1,4 @@
-package galiglobal.flink;
+package adelph.basic;
 
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;

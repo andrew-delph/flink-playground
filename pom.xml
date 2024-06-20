@@ -169,7 +169,7 @@ under the License.
 							</filters>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>galiglobal.flink.StreamingJob</mainClass>
+									<mainClass>adelph.basic.StreamingJob</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>

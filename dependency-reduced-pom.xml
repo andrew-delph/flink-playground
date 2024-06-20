@@ -87,7 +87,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>galiglobal.flink.StreamingJob</mainClass>
+                  <mainClass>adelph.basic.StreamingJob</mainClass>
                 </transformer>
               </transformers>
             </configuration>

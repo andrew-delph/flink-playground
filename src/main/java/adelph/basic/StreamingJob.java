@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package galiglobal.flink;
+package adelph.basic;
 
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.typeinfo.TypeInformation;

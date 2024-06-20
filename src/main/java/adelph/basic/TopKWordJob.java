@@ -1,4 +1,4 @@
-package galiglobal.flink;
+package adelph.basic;
 
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.java.tuple.Tuple2;
@@ -31,7 +31,7 @@ public class TopKWordJob {
         DataStream<Tuple2<String, Integer>> wordCounts = randomWords
                 .flatMap(new WordTokenizer())
                 .keyBy(value -> value.f0)
-                .window(TumblingEventTimeWindows.of(Time.seconds(10)))
+                .window(TumblingEventTimeWindows.of(Time.seconds(1)))
                 .sum(1);
 
         // Use a custom sink function to print the results
@@ -43,12 +43,16 @@ public class TopKWordJob {
             @Override
             public void apply(TimeWindow window, Iterable<Tuple2<String, Integer>> values, Collector<String> out) throws Exception {
                 PriorityQueue<Tuple2<String, Integer>> topWordsQueue = new PriorityQueue<>(Comparator.comparingInt(o -> o.f1));
+
+                int size = 0;
                 for (Tuple2<String, Integer> wordCount : values) {
+                    size++;
                     topWordsQueue.add(wordCount);
                     if (topWordsQueue.size() > 3) {
                         topWordsQueue.poll();
                     }
                 }
+                System.out.println("size: "+size);
                 StringBuilder result = new StringBuilder("Top 3 words: ");
                 while (!topWordsQueue.isEmpty()) {
                     Tuple2<String, Integer> wordCount = topWordsQueue.poll();
@@ -58,7 +62,7 @@ public class TopKWordJob {
             }
         };
         DataStream<String> topWords = wordCounts
-                .windowAll(TumblingEventTimeWindows.of(Time.seconds(20)))
+                .windowAll(TumblingEventTimeWindows.of(Time.seconds(1)))
                 .apply(windowFunction);
 
         // Print the results
