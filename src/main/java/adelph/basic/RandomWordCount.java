@@ -23,7 +23,7 @@ public class RandomWordCount {
                 .sum(1);
 
         // Use a custom sink function to print the results
-        wordCounts.addSink(new PrintSinkFunction());
+        wordCounts.addSink(new PrintSinkFunctionCustom());
 
         // Execute the Flink job
         env.execute("Random Word Count Example");

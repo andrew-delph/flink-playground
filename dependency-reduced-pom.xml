@@ -87,7 +87,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>adelph.basic.StreamingJob</mainClass>
+                  <mainClass>adelph.scala.StreamingJobScala</mainClass>
                 </transformer>
               </transformers>
             </configuration>

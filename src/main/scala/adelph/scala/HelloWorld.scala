@@ -1,4 +1,4 @@
-package adelph.basic
+package adelph.scala
 
 // src/main/scala/HelloWorld.scala
 object HelloWorld {
