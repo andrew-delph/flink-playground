@@ -7,7 +7,7 @@ public  class PrintSinkFunction implements SinkFunction<Tuple2<String, Integer>>
     @Override
     public void invoke(Tuple2<String, Integer> value, Context context) {
         if (value.f1 > 2) {
-//            System.out.println("Word: " + value.f0 + ", Count: " + value.f1);
+            System.out.println("Word: " + value.f0 + ", Count: " + value.f1);
         }
     }
 }

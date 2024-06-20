@@ -1,7 +1,6 @@
 package galiglobal.flink;
 
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
-import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.functions.windowing.AllWindowFunction;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
@@ -9,8 +8,6 @@ import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.sink.SinkFunction;
-import org.apache.flink.streaming.api.windowing.triggers.ContinuousProcessingTimeTrigger;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 
@@ -43,7 +40,7 @@ public class TopKWordJob {
 
         // Find the top 3 words every minute
         DataStream<String> topWords = wordCounts
-                .windowAll(TumblingEventTimeWindows.of(Time.seconds(1)))
+                .windowAll(TumblingEventTimeWindows.of(Time.seconds(20)))
                 .apply(new AllWindowFunction<Tuple2<String, Integer>, String, TimeWindow>() {
                     @Override
                     public void apply(TimeWindow window, Iterable<Tuple2<String, Integer>> values, Collector<String> out) {
