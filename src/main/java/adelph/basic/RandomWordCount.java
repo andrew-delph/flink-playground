@@ -29,5 +29,4 @@ public class RandomWordCount {
         env.execute("Random Word Count Example");
     }
 
-
 }
