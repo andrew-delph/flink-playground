@@ -111,6 +111,8 @@ under the License.
 			<scope>provided</scope>
 		</dependency>
 
+
+
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>statefun-flink-core</artifactId>
