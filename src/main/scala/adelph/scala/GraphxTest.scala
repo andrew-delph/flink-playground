@@ -1,6 +1,8 @@
 package adelph.scala
 
 // $example on$
+import org.apache.flink.configuration.Configuration
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment
 import org.apache.spark.graphx.GraphLoader
 // $example off$
 import org.apache.spark.sql.SparkSession
@@ -19,10 +21,13 @@ import org.apache.spark.sql.SparkSession
 object GraphxTest {
 
   def main(args: Array[String]): Unit = {
+
+    val conf = new Configuration()
+    val env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(conf)
     // Creates a SparkSession.
     val spark = SparkSession
       .builder()
-      .appName(s"${this.getClass.getSimpleName}")
+      .appName(s"${this.getClass.getSimpleName}").master("local")
       .getOrCreate()
     val sc = spark.sparkContext
 

@@ -32,9 +32,11 @@ under the License.
 		<flink.version>1.17.1</flink.version>
 		<target.java.version>1.8</target.java.version>
 		<scala.binary.version>2.13</scala.binary.version>
+		<scala.version>2.13.6</scala.version>
 		<maven.compiler.source>${target.java.version}</maven.compiler.source>
 		<maven.compiler.target>${target.java.version}</maven.compiler.target>
-		<log4j.version>2.17.1</log4j.version>
+		<log4j2.version>2.20.0</log4j2.version>
+		<slf4j.version>2.0.6</slf4j.version>
 	</properties>
 
 	<repositories>
@@ -78,6 +80,7 @@ under the License.
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-graphx_${scala.binary.version}</artifactId>
 			<version>3.5.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
@@ -172,29 +175,48 @@ under the License.
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.20.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>2.0.6</version>
+			<version>${slf4j.version}</version>
 		</dependency>
+		<!-- Log4j Core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<!-- Log4j SLF4J Implementation -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j2-impl</artifactId>
-			<version>2.20.0</version>
-			<scope>test</scope>
+			<version>${log4j2.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
 
 
 	</dependencies>
 
+
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>4.5.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- Java Compiler -->
 			<plugin>
