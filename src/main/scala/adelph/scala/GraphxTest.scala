@@ -22,8 +22,7 @@ object GraphxTest {
 
   def main(args: Array[String]): Unit = {
 
-    val conf = new Configuration()
-    val env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(conf)
+
     // Creates a SparkSession.
     val spark = SparkSession
       .builder()
